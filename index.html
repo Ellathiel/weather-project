@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Synoptik - Weather APP</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./src/styles.css" />
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <header>
+      <div class="container py-4 my-2">
+        <div class="row justify-content-between">
+          <div class="col col-md-5">
+            <div class="row">
+              <form  class="d-flex" id="search-form">
+                <div class="col flex-fill me-2 me-md-3">
+                  <input
+                    type="text"
+                    placeholder="Find your location..."
+                    class="search-field"
+                  />
+                </div>
+                <div class="col">
+                  <div class="d-flex">
+                    <input
+                      type="submit"
+                      value="Search"
+                      class="button button-primary me-2"
+                      id="search-btn"
+                    />
+                    <input
+                      type="submit"
+                      value="Current"
+                      class="button button-secondary d-none d-md-inline"
+                      id="current-btn"
+                    />
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="
+              col-12 col-md-auto
+              order-first order-md-last
+              mb-4 mb-md-0
+              text-center"
+          >
+            <img src="./media/weather-app-logo.svg" alt="Synoptik Logo" />
+          </div>
+        </div>
+      </div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="hero-container mb-4">
+          <div class="row flex-column text-center text-md-start">
+            <div
+              class="col-4 col-md-3 mb-4 align-self-center align-self-md-start"
+            >
+              <div class="row align-content-center">
+                <div class="col">
+                  <div
+                    class="
+                      d-flex
+                      justify-content-center justify-content-md-start
+                    "
+                  >
+                    <img
+                      class="precipitation-icon"
+                      src="./media/ico-umbrella.svg"
+                      alt=""
+                    />
+                    <div>86 %</div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div
+                    class="
+                      d-flex
+                      justify-content-center justify-content-md-start
+                    "
+                  >
+                    <img
+                      class="precipitation-icon"
+                      src="./media/ico-wind-2.svg"
+                      alt=""
+                    />
+                    <div>2 km/h</div>
+                  </div>
+                </div>
+              </div>
+              <div class="col">
+                <h3 id="weather-description">Sunny</h3>
+              </div>
+            </div>
+            <div class="col">
+              
+              <div
+                class="d-flex justify-content-center justify-content-md-start"
+              >
+                <img
+                  class="today-weather-icon"
+                  src="./media/ico-sunny.svg"
+                  alt=""
+                />
+                <h1 class="today-temperature">16</h1>
+                <div class="units">
+                  °C
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <h2 id="city">Kyiv</h2>
+            </div>
+            <div class="col">
+              <h3>
+                <span id="current-date">Monday, May 22</span>
+                <br />
+                <span id="current-time">16:00</span>
+              </h3>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container bg-light">
+        <div class="weather-forecast-wrapper">
+          <div class="row flex-row row-cols-7">
+            <div class="col py-4 px-4 d-none d-md-block">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-sunny-black.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-cloudy.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-chancerain.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-chancetstorms.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-chancetstorms.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-mostlysunny.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col py-4 px-4">
+              <div class="d-flex align-items-center flex-column">
+                <img
+                  class="forecast-icon"
+                  src="./media/ico-sunny-black.svg"
+                  alt="forecast icon"
+                />
+                <h4>Mo, May 22</h4>
+                <div class="weekly-forecast-wrapper">
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-day.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-day">
+                      +13°
+                    </div>
+                  </div>
+                  <div class="weekly-forecast">
+                    <img
+                      class="weekly-time-icon"
+                      src="./media/ico-small-night.svg"
+                      alt=""
+                    />
+                    <div class="weekly-temperature" id="temperature-night">
+                      +8°
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container mb-4">
+        <div class="d-flex flex-column align-items-center">
+          <div class="copyright">made by: <a href="#">Margarita Wise</a></div>
+        </div>
+      </div>
+    </main>
+    <script src="./js/index.js"></script>
+  </body>
+</html>
